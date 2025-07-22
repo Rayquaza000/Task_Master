@@ -3,11 +3,10 @@ import ViewTasksSection from './ViewTasksSection'
 import StatisticsSection from './StatisticsSection'
 
 function DataSection(props) {
-    console.log(props.vtv)
   return (
     <div>
     {
-        props.vtv ? <ViewTasksSection/> : <StatisticsSection/>
+        props.vtv ? <ViewTasksSection taskData={props.taskData} /> : <StatisticsSection/>
     }
     </div>
   )
