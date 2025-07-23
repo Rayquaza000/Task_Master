@@ -13,7 +13,7 @@ function App() {
     <>
       {/* <Header setAddTaskData={setAddTaskData} setPriorityChecked={setPriorityChecked}/>
       <DataAndMenuSection addTaskData={addTaskData} setAddTaskData={setAddTaskData} priorityChecked={priorityChecked}/> */}
-      <Header setTaskData={setTaskData}/>
+      <Header setTaskData={setTaskData} taskData={taskData}/>
       <DataAndMenuSection taskData={taskData}/>
     </>
   )

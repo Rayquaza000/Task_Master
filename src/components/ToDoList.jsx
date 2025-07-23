@@ -6,6 +6,13 @@ function ToDoList(props) {
   const [toDoItemsArray,setToDoItemsArray]=useState([]);
   const isMounted=useRef(false);
   useEffect(()=>{
+    if(localStorage.getItem("tasks")!=null)
+  {
+    setToDoItemsArray(JSON.parse(localStorage.getItem("tasks")));
+  }
+  },[]);
+  
+  useEffect(()=>{
     if(!isMounted.current)
     {
       isMounted.current=true
