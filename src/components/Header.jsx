@@ -15,8 +15,14 @@ const Header = (props) => {
       return;
     }
     const isPriority=priorityCheckbox.current.checked;
-    props.setTaskData({id:Date.now(),description:taskValue,isPriority:isPriority});
-    
+    props.setTaskData({id:Date.now(),description:taskValue,isPriority:isPriority,isCompleted:false});
+    if(localStorage.getItem("current_task_count")==null)
+    {
+      localStorage.setItem("current_task_count","0");
+    }
+    else{
+      localStorage.setItem("current_task_count",(parseInt(localStorage.getItem("current_task_count"))+1).toString());
+    }
     
   }  
 
@@ -30,9 +36,7 @@ useEffect(()=>{
     {
       dataFromLS=[];
     }
-    console.log(props.taskData);
     const newDataForLS=props.taskData;
-    console.log(newDataForLS);
     const combinedDataForLS=[...dataFromLS,newDataForLS];
     localStorage.setItem("tasks",JSON.stringify(combinedDataForLS));
     taskInput.current.value="";
