@@ -46,15 +46,19 @@ useEffect(()=>{
     },[props.taskData]);
 
   return (
-    <header className='flex flex-col h-auto bg-gray-200 justify-center items-center text-2xl' id="headerSection">
-      <h1 className='text-orange-700 text-5xl font-bold mt-3.5'>Task Master</h1>
-      <p className='font-bold text-2xl'>Your To-do List</p>
-      <input type='text' className='border-2 border-black text-3xl p-1 bg-white mt-10 w-100'placeholder='Enter task' ref={taskInput}></input>
-      <div className='inline mt-2'>
-        <label className='text-2xl' >High Priority? </label>
-        <input type='checkbox' className='w-7 h-7' ref={priorityCheckbox}></input>
+    <header className='flex flex-col p-8 h-auto border-2 border-black bg-gray-200  justify-center items-center text-2xl lg:flex lg:flex-row lg:text-[18px] lg:justify-start' id="headerSection">
+      <div className='flex flex-col items-center justify-center lg:w-1/3'>
+      <h1 className='text-orange-700 text-5xl font-bold mt-3.5 lg:text-3xl '>Task Master</h1>
+      <p className='font-bold text-2xl lg:text-[18px]'>Your To-do List</p>
       </div>
-      <button className='bg-orange-700 text-white p-3 mt-3.5 mb-7 border-2 border-black' onClick={()=>handleAddTaskButtonClick()}>Add task</button>
+      <div className='gap-2 flex flex-col items-center mt-12 lg:mt-0 lg:flex lg:flex-row lg:items-center lg:justify-center lg:w-full'>
+      <input type='text' className='border-2 border-black text-3xl p-1 bg-white w-100 lg:text-[18px] lg:w-100' placeholder='Enter task' ref={taskInput}></input>
+      <div className='inline mt-2 items-center'>
+        <label className='text-2xl lg:text-[18px] items-center' >High Priority? </label>
+        <input type='checkbox' name="priority_checkbox" className='w-7 h-7 lg:text-[18px] lg:w-4 lg:h-4 sm:w-6 sm:h-6' ref={priorityCheckbox}></input>
+      </div>
+      <button className='bg-orange-700 text-white px-4 py-2 border-2 border-black lg:text-[18px] hover:bg-orange-800 transition' onClick={()=>handleAddTaskButtonClick()}>Add task</button>
+      </div>
     </header>
   )
 }

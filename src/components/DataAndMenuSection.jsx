@@ -6,7 +6,7 @@ function DataAndMenuSection(props) {
     const [viewTasksVisible,setViewTasksVisible]=useState(true);
     const [statisticsVisible,setStatisticsVisible]=useState(false);
   return (
-    <div >
+    <div className='lg:flex lg:flex-row w-full h-full lg:h-96'>
         <MenuSection  svtv={setViewTasksVisible} ssv={setStatisticsVisible}/>
         <DataSection vtv={viewTasksVisible}  sv={statisticsVisible} taskData={props.taskData}/>
     </div>

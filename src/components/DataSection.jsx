@@ -4,7 +4,7 @@ import StatisticsSection from './StatisticsSection'
 
 function DataSection(props) {
   return (
-    <div>
+    <div className='w-full'>
     {
         props.vtv ? <ViewTasksSection taskData={props.taskData} /> : <StatisticsSection/>
     }

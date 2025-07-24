@@ -26,12 +26,12 @@ function App() {
       localStorage.setItem("current_task_count","0");
     }
   return (
-    <>
+    <div className='h-full'>
       {/* <Header setAddTaskData={setAddTaskData} setPriorityChecked={setPriorityChecked}/>
       <DataAndMenuSection addTaskData={addTaskData} setAddTaskData={setAddTaskData} priorityChecked={priorityChecked}/> */}
       <Header setTaskData={setTaskData} taskData={taskData}/>
       <DataAndMenuSection taskData={taskData}/>
-    </>
+    </div>
   )
 }
 
