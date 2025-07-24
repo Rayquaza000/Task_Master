@@ -42,8 +42,8 @@ function ToDoItem(props) {
   }, [props.priorityChecked]);
 
   function markAsCompleted(key1) {
-    if (!props.isCompleted) {
-      props.setIsCompleted(true);
+    if (!props.marked) {
+      //props.marked=true;
       if (task_description_ref.current){
         task_description_ref.current.style.backgroundColor = "#a3e635";}
       if (task_delete_button_ref.current){
@@ -52,6 +52,15 @@ function ToDoItem(props) {
         task_edit_button_ref.current.style.backgroundColor = "#d7e4bd";
         }
         props.markTaskIsCompleted(props.key1)
+        localStorage.setItem("completed_tasks",(parseInt(localStorage.getItem("completed_tasks"))+1).toString());
+        if(props.priorityChecked==true)
+        {
+          localStorage.setItem("priority_tasks",(parseInt(localStorage.getItem("priority_tasks"))-1).toString());
+          localStorage.setItem("pending_tasks",(parseInt(localStorage.getItem("pending_tasks"))-1).toString());
+        }
+        else{
+          localStorage.setItem("pending_tasks",(parseInt(localStorage.getItem("pending_tasks"))-1).toString());
+        }
     }
   }
 

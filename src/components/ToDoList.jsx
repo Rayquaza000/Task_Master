@@ -16,22 +16,52 @@ function ToDoList(props) {
 
   // Add new task
   useEffect(() => {
+    let updated;
     if (!isMounted.current) {
+      console.log(isMounted.current);
       isMounted.current = true;
       return;
     }
-    if (!props.taskData || props.taskData.description === "") return;
-
+    if (!props.taskData || props.taskData.description === ""){ return;}
+    let temp=true;
     setToDoItemsArray(prevItems => {
-      const updated = [...prevItems, props.taskData];
+      prevItems.forEach((pi,index)=>{
+        if(pi.id==props.taskData.id)
+        {
+          temp=false;
+        }
+      });
+      if(temp==false)
+      {
+        updated=prevItems;
+      }
+      else{
+      updated = [...prevItems, props.taskData];
+      }
       localStorage.setItem("tasks", JSON.stringify(updated));
       return updated;
     });
+    console.log(updated);
   }, [props.taskData]);
 
   // Delete task
   function deleteThisToDoItem(idToRemove) {
     const updatedList = toDoItemsArray.filter(item => item.id !== idToRemove);
+    const itemDeleted= toDoItemsArray.filter(item => item.id == idToRemove);
+    if(itemDeleted.isCompleted==true)
+    {
+      localStorage.setItem("completed_tasks",(parseInt(localStorage.getItem("completed_tasks"))-1).toString());
+    }
+    else if(itemDeleted.isPriority==true)
+    {
+      localStorage.setItem("priority_tasks",(parseInt(localStorage.getItem("priority_tasks"))-1).toString());
+      localStorage.setItem("pending_tasks",(parseInt(localStorage.getItem("pending_tasks"))-1).toString())
+    }
+    else
+    {
+      localStorage.setItem("pending_tasks",(parseInt(localStorage.getItem("pending_tasks"))-1).toString())
+    }
+    localStorage.setItem("current_tasks",(parseInt(localStorage.getItem("current_tasks"))+1).toString())
     setToDoItemsArray(updatedList);
     localStorage.setItem("tasks", JSON.stringify(updatedList));
   }
@@ -66,8 +96,6 @@ function ToDoList(props) {
           deleteThisToDoItem={deleteThisToDoItem}
           editThisToDoItem={editThisToDoItem}
           markTaskIsCompleted={markTaskIsCompleted}
-          setIsCompleted={setIsCompleted}
-          isCompleted={isCompleted}
           marked={task.isCompleted}
         />
       ))}

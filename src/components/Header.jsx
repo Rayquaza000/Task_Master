@@ -16,12 +16,14 @@ const Header = (props) => {
     }
     const isPriority=priorityCheckbox.current.checked;
     props.setTaskData({id:Date.now(),description:taskValue,isPriority:isPriority,isCompleted:false});
-    if(localStorage.getItem("current_task_count")==null)
-    {
-      localStorage.setItem("current_task_count","0");
-    }
-    else{
+    
+    
       localStorage.setItem("current_task_count",(parseInt(localStorage.getItem("current_task_count"))+1).toString());
+    
+    localStorage.setItem("pending_tasks",(parseInt(localStorage.getItem("pending_tasks"))+1).toString());
+    if(isPriority==true)
+    {
+      localStorage.setItem("priority_tasks",(parseInt(localStorage.getItem("priority_tasks"))+1).toString());
     }
     
   }  
